@@ -1,8 +1,12 @@
 import './App.css'
+import { LengthConverter } from './components/LengthConverter'
+import { LengthContextProvider } from './contexts/LengthContext'
 
 function App() {
   return (
-    <h1>hello</h1>
+    <LengthContextProvider>
+      <LengthConverter />
+    </LengthContextProvider>
   )
 }
 
