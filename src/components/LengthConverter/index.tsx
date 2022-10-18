@@ -33,7 +33,7 @@ export const LengthItem = ({unit, id, onChangeHandler}: LenghtItemProps) => {
     <>
       <label htmlFor={unit.name}>{unit.name}({unit.symbol})</label>
       <br/>
-      <input type='number' id={unit.name} value={unit.value} onChange={(e) => onChangeHandler(parseFloat(e.target.value), id)} />
+      <input type='number' step={0.1} id={unit.name} value={unit.value} onChange={(e) => onChangeHandler(parseFloat(e.target.value), id)} />
     </>
   )
 }

@@ -1,3 +1,4 @@
+import {format, config} from "mathjs";
 import React, { createContext, useContext, useEffect, useReducer } from "react";
 
 export type Unit = {
@@ -33,7 +34,7 @@ export const LengthContextProvider = ({children}: IProps) => {
 
   useEffect(() => {
     const others = state.others.map((unit: Unit) => {
-      return {...unit, value: state.si.value * unit.ratio}
+      return {...unit, value: format(state.si.value * unit.ratio, {notation: 'auto', precision: 5})}
     }) 
     dispatch({type: 'unit', payload: others})
   },[state.si])
@@ -47,12 +48,8 @@ export const LengthContextProvider = ({children}: IProps) => {
   }
 
   const changeUnit = (value: number, id: number) => {
-    //refactor:
-    //mudar unit que foi digitada ->
-    //mudar a si
-    //mudar só as outras units
     const unit = state.others[id]
-    changeSi(value / unit.ratio)
+    changeSi(parseFloat(format((value / unit.ratio), {notation: "auto", precision: 5})))
   }
 
   return (
